@@ -41,6 +41,7 @@
   },
   "prettier": "@perugi/prettier-config",
   "dependencies": {
-    "@perugi/web-utilities": "^1.0.0"
+    "@perugi/web-utilities": "^1.0.0",
+    "date-fns": "^3.3.1"
   }
 }
