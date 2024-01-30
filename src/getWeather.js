@@ -41,8 +41,6 @@ function convertHourlyForecastToThreeHourly(hourlyForecast) {
 }
 
 function processWeatherData(rawData) {
-  console.log(rawData);
-
   if (rawData.error) {
     console.log('Error in response from API');
     console.log(rawData.error);

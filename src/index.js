@@ -2,10 +2,9 @@ import './reset.css';
 import './styles.css';
 
 import Utilities from '@perugi/web-utilities';
-import getWeather from './getWeather';
+import Website from './Website';
 
 Utilities.renderGHLogo();
 
-getWeather('vancouver').then((data) => {
-  console.log(data);
-});
+const website = new Website();
+website.render();
