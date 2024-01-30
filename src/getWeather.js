@@ -18,7 +18,31 @@ async function getWeatherData(location) {
   }
 }
 
+function convertHourlyForecastToThreeHourly(hourlyForecast) {
+  const threeHourlyForecast = hourlyForecast.filter(
+    (_, index) => index % 3 === 0
+  );
+
+  // The 3-hourly precipitation forecast should include the total precipitation
+  // for this and the next two hours.
+  threeHourlyForecast.forEach((forecast, index) => {
+    threeHourlyForecast[index].precip_mm =
+      hourlyForecast[index * 3].precip_mm +
+      hourlyForecast[index * 3 + 1].precip_mm +
+      hourlyForecast[index * 3 + 2].precip_mm;
+
+    threeHourlyForecast[index].precip_in =
+      hourlyForecast[index * 3].precip_in +
+      hourlyForecast[index * 3 + 1].precip_in +
+      hourlyForecast[index * 3 + 2].precip_in;
+  });
+
+  return threeHourlyForecast;
+}
+
 function processWeatherData(rawData) {
+  console.log(rawData);
+
   if (rawData.error) {
     console.log('Error in response from API');
     console.log(rawData.error);
@@ -27,10 +51,12 @@ function processWeatherData(rawData) {
 
   const datetimeNow = new Date();
   const processedData = {};
-  processedData.location = rawData.location.name;
-  processedData.weather = [];
+  processedData.location = {
+    name: rawData.location.name,
+    country: rawData.location.country,
+  };
 
-  processedData.weather.push({
+  processedData.current = {
     date: formatISO(datetimeNow, { representation: 'date' }),
     condition: rawData.current.condition.text,
     temp_c: rawData.current.temp_c,
@@ -42,14 +68,15 @@ function processWeatherData(rawData) {
     wind_dir: rawData.current.wind_dir,
     wind_kph: rawData.current.wind_kph,
     wind_mph: rawData.current.wind_mph,
-  });
+  };
 
-  const remainingForecastToday3h = rawData.forecast.forecastday[0].hour.filter(
-    (_, index) => index > datetimeNow.getHours() && index % 3 === 0
-  );
-  const forecastTomorrow3h = rawData.forecast.forecastday[1].hour.filter(
-    (_, index) => index % 3 === 0
-  );
+  const remainingForecastToday3h = convertHourlyForecastToThreeHourly([
+    ...rawData.forecast.forecastday[0].hour,
+  ]).filter((_, index) => index * 3 > datetimeNow.getHours());
+  const forecastTomorrow3h = convertHourlyForecastToThreeHourly([
+    ...rawData.forecast.forecastday[1].hour,
+  ]);
+
   const forecastNext24h = remainingForecastToday3h
     .concat(forecastTomorrow3h.slice(0, 8 - remainingForecastToday3h.length))
     .map((forecast) => ({
@@ -61,10 +88,11 @@ function processWeatherData(rawData) {
       precip_in: forecast.precip_in,
     }));
 
-  processedData.weather[0].forecastNext24h = forecastNext24h;
+  processedData.current.forecastNext24h = forecastNext24h;
 
+  processedData.forecast = [];
   rawData.forecast.forecastday.slice(1).forEach((forecast) => {
-    processedData.weather.push({
+    processedData.forecast.push({
       date: forecast.date,
       condition: forecast.day.condition.text,
       mintemp_c: forecast.day.mintemp_c,

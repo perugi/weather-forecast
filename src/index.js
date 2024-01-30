@@ -6,6 +6,6 @@ import getWeather from './getWeather';
 
 Utilities.renderGHLogo();
 
-getWeather('ljubljana').then((data) => {
+getWeather('vancouver').then((data) => {
   console.log(data);
 });
