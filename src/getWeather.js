@@ -49,6 +49,9 @@ function processWeatherData(rawData) {
 
   const datetimeNow = new Date();
   const processedData = {};
+
+  processedData.lastUpdated = rawData.current.last_updated;
+
   processedData.location = {
     name: rawData.location.name,
     country: rawData.location.country,
