@@ -5,11 +5,10 @@ export default class Website {
 
   timeoutId;
 
-  weatherDisplayed;
-
   weatherData;
 
-  API_QUERY_WAIT_TIME = 2000;
+  // Call the API every 5 minutes.
+  API_QUERY_WAIT_TIME = 300000;
 
   constructor() {
     this.selectedLocation = null;
@@ -41,14 +40,16 @@ export default class Website {
 
     this.selectedLocation = location;
     this.weatherDisplayed = false;
-    this.#renderWeather();
+    this.#renderWeather('user');
   }
 
-  async #renderWeather() {
+  async #renderWeather(callMethod) {
     if (!this.selectedLocation) return;
 
-    if (!this.weatherDisplayed) {
+    if (callMethod === 'user') {
       document.querySelector('#loading-container').style.display = 'block';
+      document.querySelector('#error-container').style.display = 'none';
+      document.querySelector('#weather-container').style.display = 'none';
     }
 
     this.weatherData = await getWeather(this.selectedLocation);
@@ -64,7 +65,7 @@ export default class Website {
     this.#renderDailyForecast();
 
     this.timeoutId = setTimeout(() => {
-      this.#renderWeather();
+      this.#renderWeather('automatic');
     }, this.API_QUERY_WAIT_TIME);
   }
 
