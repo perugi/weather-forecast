@@ -60,13 +60,14 @@ function processWeatherData(rawData) {
   processedData.current = {
     date: formatISO(datetimeNow, { representation: 'date' }),
     condition: rawData.current.condition.text,
+    condition_code: rawData.current.condition.code,
     temp_c: rawData.current.temp_c,
     temp_f: rawData.current.temp_f,
     feelslike_c: rawData.current.feelslike_c,
     feelslike_f: rawData.current.feelslike_f,
     precip_mm: rawData.current.precip_mm,
     precip_in: rawData.current.precip_in,
-    wind_dir: rawData.current.wind_dir,
+    wind_dir: rawData.current.wind_degree,
     wind_kph: rawData.current.wind_kph,
     wind_mph: rawData.current.wind_mph,
   };
@@ -83,6 +84,7 @@ function processWeatherData(rawData) {
     .map((forecast) => ({
       time: forecast.time.split(' ')[1],
       condition: forecast.condition.text,
+      condition_code: forecast.condition.code,
       temp_c: forecast.temp_c,
       temp_f: forecast.temp_f,
       precip_mm: forecast.precip_mm,
@@ -96,6 +98,7 @@ function processWeatherData(rawData) {
     processedData.forecast.push({
       date: forecast.date,
       condition: forecast.day.condition.text,
+      condition_code: forecast.day.condition.code,
       mintemp_c: forecast.day.mintemp_c,
       mintemp_f: forecast.day.mintemp_f,
       maxtemp_c: forecast.day.maxtemp_c,

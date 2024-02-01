@@ -13,7 +13,6 @@ export default class Website {
   constructor() {
     this.selectedLocation = null;
     this.intervalId = null;
-    this.weatherDisplayed = false;
     this.weatherData = null;
   }
 
@@ -39,7 +38,6 @@ export default class Website {
     }
 
     this.selectedLocation = location;
-    this.weatherDisplayed = false;
     this.#renderWeather('user');
   }
 
@@ -59,7 +57,7 @@ export default class Website {
       return;
     }
 
-    this.weatherDisplayed = true;
+    // TODO switch Celsius/Fahrenheit
     this.#renderCurrent();
     this.#render24hForecast();
     this.#renderDailyForecast();
@@ -103,6 +101,11 @@ export default class Website {
     lastUpdated.textContent = `Last updated: ${this.weatherData.lastUpdated}`;
 
     // TODO weather icons
+    const icon = currentContainer.querySelector('#current-weather-icon');
+    icon.setAttribute(
+      'alt',
+      `Weather Icon ${this.weatherData.current.condition_code}`
+    );
 
     const weatherDescription = currentContainer.querySelector(
       '#current-weather-description'
@@ -148,7 +151,7 @@ export default class Website {
       // TODO weather icons
       const icon = document.createElement('img');
       icon.classList.add('forecast-24h-icon');
-      icon.setAttribute('alt', 'Weather Icon');
+      icon.setAttribute('alt', `Weather Icon ${forecast.condition_code}`);
 
       const description = document.createElement('div');
       description.classList.add('forecast-24h-description');
@@ -196,7 +199,7 @@ export default class Website {
       // TODO weather icons
       const icon = document.createElement('img');
       icon.classList.add('forecast-daily-icon');
-      icon.setAttribute('alt', 'Weather Icon');
+      icon.setAttribute('alt', `Weather Icon ${forecast.condition_code}`);
 
       const description = document.createElement('div');
       description.classList.add('forecast-daily-description');
