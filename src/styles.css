@@ -48,6 +48,88 @@ main {
   top: 50px;
 }
 
+/* Button from https://codepen.io/alvarotrigo/pen/oNoJePo*/
+
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+  top: 50%;
+  width: 74px;
+  height: 36px;
+  margin: -20px auto 0 auto;
+  overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 100px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #ebf7fc;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+#metric-imperial-button .knobs:before {
+  content: 'ºC';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 10px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: #03a9f4;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#metric-imperial-button .checkbox:checked + .knobs:before {
+  content: 'ºF';
+  left: 42px;
+  background-color: #f44336;
+}
+
+#metric-imperial-button .checkbox:checked ~ .layer {
+  background-color: #fcebeb;
+}
+
+#metric-imperial-button .knobs,
+#metric-imperial-button .knobs:before,
+#metric-imperial-button .layer {
+  transition: 0.3s ease all;
+}
+
+/* End Button */
+
 #weather-container {
   flex: 5;
   display: none;
@@ -56,6 +138,7 @@ main {
   grid-template-areas:
     'current-container forecast-24h-container'
     'current-container forecast-daily-container';
+  gap: 20px;
 }
 
 #current-container {
@@ -104,6 +187,7 @@ footer {
   justify-content: center;
   align-items: center;
   background-color: var(--highlight-color);
+  font-family: 'Outfit', sans-serif;
 }
 
 #gh-link {

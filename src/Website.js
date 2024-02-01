@@ -7,6 +7,8 @@ export default class Website {
 
   weatherData;
 
+  displayIsMetric;
+
   // Call the API every 5 minutes.
   API_QUERY_WAIT_TIME = 300000;
 
@@ -14,6 +16,7 @@ export default class Website {
     this.selectedLocation = null;
     this.intervalId = null;
     this.weatherData = null;
+    this.displayIsMetric = true;
   }
 
   render() {
@@ -28,6 +31,16 @@ export default class Website {
       if (event.keyCode === 13) {
         this.#processLocationSearch(locationInput.value);
       }
+    });
+
+    const metricImperialSwitch = document.querySelector(
+      '#metric-imperial-button'
+    );
+    metricImperialSwitch.addEventListener('click', () => {
+      this.displayIsMetric = !this.displayIsMetric;
+      this.#renderCurrent();
+      this.#render24hForecast();
+      this.#renderDailyForecast();
     });
   }
 
@@ -57,7 +70,6 @@ export default class Website {
       return;
     }
 
-    // TODO switch Celsius/Fahrenheit
     this.#renderCurrent();
     this.#render24hForecast();
     this.#renderDailyForecast();
@@ -113,22 +125,38 @@ export default class Website {
     weatherDescription.textContent = this.weatherData.current.condition;
 
     const temperature = currentContainer.querySelector('#current-temperature');
-    temperature.textContent = `${this.weatherData.current.temp_c}°C`;
+    if (this.displayIsMetric) {
+      temperature.textContent = `${this.weatherData.current.temp_c}°C`;
+    } else {
+      temperature.textContent = `${this.weatherData.current.temp_f}°F`;
+    }
 
     const feelsLike = currentContainer.querySelector('#feels-like');
-    feelsLike.textContent = `Feels like ${this.weatherData.current.feelslike_c}°C`;
+    if (this.displayIsMetric) {
+      feelsLike.textContent = `Feels like ${this.weatherData.current.feelslike_c}°C`;
+    } else {
+      feelsLike.textContent = `Feels like ${this.weatherData.current.feelslike_f}°F`;
+    }
 
     const precipitation = currentContainer.querySelector(
       '#current-precipitation'
     );
-    precipitation.textContent = `${this.weatherData.current.precip_mm} mm`;
+    if (this.displayIsMetric) {
+      precipitation.textContent = `${this.weatherData.current.precip_mm} mm`;
+    } else {
+      precipitation.textContent = `${this.weatherData.current.precip_in} in`;
+    }
 
     // TODO wind direction as a rotating arrow
     const windDirection = currentContainer.querySelector('#wind-direction');
     windDirection.textContent = `${this.weatherData.current.wind_dir}`;
 
     const windSpeed = currentContainer.querySelector('#wind-speed');
-    windSpeed.textContent = `${this.weatherData.current.wind_kph} km/h`;
+    if (this.displayIsMetric) {
+      windSpeed.textContent = `${this.weatherData.current.wind_kph} km/h`;
+    } else {
+      windSpeed.textContent = `${this.weatherData.current.wind_mph} mph`;
+    }
 
     loadingContainer.style.display = 'none';
     weatherContainer.style.display = 'grid';
@@ -159,11 +187,19 @@ export default class Website {
 
       const temperature = document.createElement('div');
       temperature.classList.add('forecast-24h-temperature');
-      temperature.textContent = `${forecast.temp_c}°C`;
+      if (this.displayIsMetric) {
+        temperature.textContent = `${forecast.temp_c}°C`;
+      } else {
+        temperature.textContent = `${forecast.temp_f}°F`;
+      }
 
       const precipitation = document.createElement('div');
       precipitation.classList.add('forecast-24h-precipitation');
-      precipitation.textContent = `${forecast.precip_mm} mm`;
+      if (this.displayIsMetric) {
+        precipitation.textContent = `${forecast.precip_mm} mm`;
+      } else {
+        precipitation.textContent = `${forecast.precip_in} in`;
+      }
 
       forecast24hCard.appendChild(time);
       forecast24hCard.appendChild(icon);
@@ -207,11 +243,19 @@ export default class Website {
 
       const temperature = document.createElement('div');
       temperature.classList.add('forecast-daily-temperature');
-      temperature.textContent = `${forecast.mintemp_c} / ${forecast.maxtemp_c}°C`;
+      if (this.displayIsMetric) {
+        temperature.textContent = `${forecast.mintemp_c} / ${forecast.maxtemp_c}°C`;
+      } else {
+        temperature.textContent = `${forecast.mintemp_f} / ${forecast.maxtemp_f}°F`;
+      }
 
       const precipitation = document.createElement('div');
       precipitation.classList.add('forecast-daily-precipitation');
-      precipitation.textContent = `${forecast.totalprecip_mm} mm`;
+      if (this.displayIsMetric) {
+        precipitation.textContent = `${forecast.totalprecip_mm} mm`;
+      } else {
+        precipitation.textContent = `${forecast.totalprecip_in} in`;
+      }
 
       forecastDailyCard.appendChild(title);
       forecastDailyCard.appendChild(date);
