@@ -113,7 +113,7 @@ export default class Website {
     temperature.textContent = `${this.weatherData.current.temp_c}°C`;
 
     const feelsLike = currentContainer.querySelector('#feels-like');
-    feelsLike.textContent = `Feelse like ${this.weatherData.current.feelslike_c}°C`;
+    feelsLike.textContent = `Feels like ${this.weatherData.current.feelslike_c}°C`;
 
     const precipitation = currentContainer.querySelector(
       '#current-precipitation'
@@ -128,7 +128,7 @@ export default class Website {
     windSpeed.textContent = `${this.weatherData.current.wind_kph} km/h`;
 
     loadingContainer.style.display = 'none';
-    weatherContainer.style.display = 'block';
+    weatherContainer.style.display = 'grid';
     errorContainer.style.display = 'none';
   }
 
@@ -150,6 +150,10 @@ export default class Website {
       icon.classList.add('forecast-24h-icon');
       icon.setAttribute('alt', 'Weather Icon');
 
+      const description = document.createElement('div');
+      description.classList.add('forecast-24h-description');
+      description.textContent = forecast.condition;
+
       const temperature = document.createElement('div');
       temperature.classList.add('forecast-24h-temperature');
       temperature.textContent = `${forecast.temp_c}°C`;
@@ -160,6 +164,7 @@ export default class Website {
 
       forecast24hCard.appendChild(time);
       forecast24hCard.appendChild(icon);
+      forecast24hCard.appendChild(description);
       forecast24hCard.appendChild(temperature);
       forecast24hCard.appendChild(precipitation);
 
