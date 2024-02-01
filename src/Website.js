@@ -1,6 +1,7 @@
 import Compass from '@bybas/weather-icons/production/line/all/compass.svg';
 import getWeather from './getWeather';
 import lookupIcon from './lookupIcon';
+import getDayOfTheWeek from './getDayOfTheWeek';
 
 export default class Website {
   selectedLocation;
@@ -112,7 +113,9 @@ export default class Website {
     country.textContent = this.weatherData.location.country;
 
     const date = currentContainer.querySelector('#current-date');
-    date.textContent = this.weatherData.current.date;
+    date.textContent = `${getDayOfTheWeek(this.weatherData.current.date)}, ${
+      this.weatherData.current.date
+    }`;
 
     const lastUpdated = currentContainer.querySelector('#last-updated');
     lastUpdated.textContent = `Last updated: ${this.weatherData.lastUpdated}`;
@@ -244,7 +247,7 @@ export default class Website {
 
       const date = document.createElement('div');
       date.classList.add('forecast-daily-date');
-      date.textContent = forecast.date;
+      date.textContent = `${getDayOfTheWeek(forecast.date)}, ${forecast.date}`;
 
       const icon = document.createElement('img');
       icon.classList.add('forecast-daily-icon');
