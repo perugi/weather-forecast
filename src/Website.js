@@ -1,3 +1,4 @@
+import Compass from '@bybas/weather-icons/production/line/all/compass.svg';
 import getWeather from './getWeather';
 import lookupIcon from './lookupIcon';
 
@@ -43,6 +44,9 @@ export default class Website {
       this.#render24hForecast();
       this.#renderDailyForecast();
     });
+
+    const windDirection = document.querySelector('#wind-direction');
+    windDirection.src = Compass;
   }
 
   async #processLocationSearch(location) {
@@ -151,9 +155,12 @@ export default class Website {
       precipitation.textContent = `${this.weatherData.current.precip_in} in`;
     }
 
-    // TODO wind direction as a rotating arrow
     const windDirection = currentContainer.querySelector('#wind-direction');
-    windDirection.textContent = `${this.weatherData.current.wind_dir}`;
+    windDirection.setAttribute(
+      'alt',
+      `Wind direction ${this.weatherData.current.wind_dir} degrees`
+    );
+    windDirection.style.transform = `rotate(${this.weatherData.current.wind_dir}deg)`;
 
     const windSpeed = currentContainer.querySelector('#wind-speed');
     if (this.displayIsMetric) {
