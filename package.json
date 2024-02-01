@@ -41,6 +41,7 @@
   },
   "prettier": "@perugi/prettier-config",
   "dependencies": {
+    "@bybas/weather-icons": "^2.0.0",
     "@perugi/web-utilities": "^1.0.0",
     "date-fns": "^3.3.1"
   }

@@ -1,4 +1,5 @@
 import getWeather from './getWeather';
+import lookupIcon from './lookupIcon';
 
 export default class Website {
   selectedLocation;
@@ -112,11 +113,14 @@ export default class Website {
     const lastUpdated = currentContainer.querySelector('#last-updated');
     lastUpdated.textContent = `Last updated: ${this.weatherData.lastUpdated}`;
 
-    // TODO weather icons
     const icon = currentContainer.querySelector('#current-weather-icon');
     icon.setAttribute(
       'alt',
       `Weather Icon ${this.weatherData.current.condition_code}`
+    );
+    icon.src = lookupIcon(
+      this.weatherData.current.condition_code,
+      new Date().getHours
     );
 
     const weatherDescription = currentContainer.querySelector(
@@ -176,10 +180,13 @@ export default class Website {
       time.classList.add('forecast-24h-time');
       time.textContent = forecast.time;
 
-      // TODO weather icons
       const icon = document.createElement('img');
       icon.classList.add('forecast-24h-icon');
       icon.setAttribute('alt', `Weather Icon ${forecast.condition_code}`);
+      icon.src = lookupIcon(
+        forecast.condition_code,
+        forecast.time.split(':')[0]
+      );
 
       const description = document.createElement('div');
       description.classList.add('forecast-24h-description');
@@ -232,10 +239,10 @@ export default class Website {
       date.classList.add('forecast-daily-date');
       date.textContent = forecast.date;
 
-      // TODO weather icons
       const icon = document.createElement('img');
       icon.classList.add('forecast-daily-icon');
       icon.setAttribute('alt', `Weather Icon ${forecast.condition_code}`);
+      icon.src = lookupIcon(forecast.condition_code, 12);
 
       const description = document.createElement('div');
       description.classList.add('forecast-daily-description');
