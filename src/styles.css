@@ -7,6 +7,7 @@
 
 :root {
   --text-color: #4d4d4d;
+  --text-color-light: #979797;
 }
 
 body {
@@ -36,6 +37,10 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+#search-container > div:first-child {
+  font-weight: 600;
 }
 
 #search-form {
@@ -130,70 +135,209 @@ main {
 
 /* End Button */
 
+/* #weather-container {
+  flex: 5;
+  display: none;
+  grid-template-rows: 2fr 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'current-container forecast-24h-container'
+    'current-container forecast-daily-container'
+    'spacer-container spacer-container';
+  gap: 20px;
+} */
+
 #weather-container {
   flex: 5;
   display: none;
-  grid-auto-rows: 1fr;
-  grid-template-columns: 1fr 2fr;
-  grid-template-areas:
-    'current-container forecast-24h-container'
-    'current-container forecast-daily-container';
-  gap: 20px;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 10vh;
 }
 
 #current-container {
-  grid-area: current-container;
+  align-self: flex-start;
   display: flex;
+  flex-direction: column;
   justify-content: end;
-  align-items: center;
+  align-items: flex-start;
+  margin-right: 20px;
 }
 
-#current-container > div > div:last-child {
+#current-container > div:last-child {
   display: flex;
+}
+
+#current-city {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+#current-country {
+  font-size: 24px;
+}
+
+#last-updated {
+  color: var(--text-color-light);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+#current-weather-icon {
+  width: 150px;
+  height: 150px;
+}
+
+#current-weather-description {
+  text-align: center;
+  font-size: 18px;
+}
+
+#current-conditions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+}
+
+#feels-like {
+  color: var(--text-color-light);
+  font-size: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#current-precipitation {
+  margin-bottom: 10px;
+}
+
+#wind-direction {
+  width: 100px;
+}
+
+#forecast-container {
+  display: flex;
+  flex-direction: column;
 }
 
 #forecast-24h-container {
-  grid-area: forecast-24h-container;
   display: flex;
   flex-direction: column;
   justify-content: end;
 }
 
+#forecast-24h-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
 #forecast-24h-cards {
   display: flex;
+  gap: 10px;
   flex-wrap: wrap;
+}
+
+.forecast-24h-card {
+  display: flex;
+  width: 80px;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--text-color-light);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.forecast-24h-time {
+  margin-bottom: 5px;
+}
+
+.forecast-24h-description {
+  margin-bottom: 5px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.forecast-24h-temperature {
+  margin-top: auto;
+  margin-bottom: 5px;
+}
+
+#forecast-daily-container {
+  margin-top: 20px;
 }
 
 #forecast-daily-cards {
   display: flex;
+  gap: 10px;
 }
 
-#forecast-daily-container {
-  grid-area: forecast-daily-container;
+.forecast-daily-card {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.forecast-daily-title {
+  font-size: 18px;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.forecast-daily-date {
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+
+.forecast-daily-icon {
+  width: 100px;
+}
+
+.forecast-daily-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.forecast-daily-temperature {
+  margin-bottom: 10px;
 }
 
 #loading-container {
   display: none;
   flex: 5;
+  align-items: center;
+  justify-content: center;
 }
 
 #error-container {
   display: none;
+  align-items: center;
+  justify-content: center;
   flex: 5;
 }
 
 footer {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   background-color: var(--highlight-color);
   font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+footer > div {
+  width: 250px;
+}
+
+div.author {
+  display: flex;
+  justify-content: center;
 }
 
 #gh-link {
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 300;
   letter-spacing: 0;
   color: var(--font-medium);
   display: flex;
