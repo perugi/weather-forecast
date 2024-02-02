@@ -41,6 +41,7 @@ function convertHourlyForecastToThreeHourly(hourlyForecast) {
 }
 
 function processWeatherData(rawData) {
+  console.log(rawData);
   if (rawData.error) {
     console.log('Error in response from API');
     console.log(rawData.error);
@@ -55,6 +56,7 @@ function processWeatherData(rawData) {
   processedData.location = {
     name: rawData.location.name,
     country: rawData.location.country,
+    localtime: rawData.location.localtime,
   };
 
   processedData.current = {
@@ -74,7 +76,10 @@ function processWeatherData(rawData) {
 
   const remainingForecastToday3h = convertHourlyForecastToThreeHourly([
     ...rawData.forecast.forecastday[0].hour,
-  ]).filter((_, index) => index * 3 > datetimeNow.getHours());
+  ]).filter(
+    (_, index) =>
+      index * 3 > rawData.location.localtime.split(' ')[1].split(':')[0]
+  );
   const forecastTomorrow3h = convertHourlyForecastToThreeHourly([
     ...rawData.forecast.forecastday[1].hour,
   ]);

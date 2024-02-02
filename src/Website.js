@@ -12,8 +12,8 @@ export default class Website {
 
   displayIsMetric;
 
-  // Call the API every 5 minutes.
-  API_QUERY_WAIT_TIME = 300000;
+  // Call the API every minute.
+  API_QUERY_WAIT_TIME = 60 * 1000;
 
   constructor() {
     this.selectedLocation = null;
@@ -113,9 +113,9 @@ export default class Website {
     country.textContent = this.weatherData.location.country;
 
     const date = currentContainer.querySelector('#current-date');
-    date.textContent = `${getDayOfTheWeek(this.weatherData.current.date)}, ${
-      this.weatherData.current.date
-    }`;
+    date.textContent = `${getDayOfTheWeek(
+      this.weatherData.location.localtime.split(' ')[0]
+    )}, ${this.weatherData.location.localtime}`;
 
     const lastUpdated = currentContainer.querySelector('#last-updated');
     lastUpdated.textContent = `Last updated: ${this.weatherData.lastUpdated}`;
