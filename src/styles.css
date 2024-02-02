@@ -47,6 +47,16 @@ main {
   margin-top: 10px;
 }
 
+#location-input {
+  padding: 5px 10px;
+  width: 300px;
+}
+
+#location-button {
+  padding: 5px 10px;
+  margin-left: 5px;
+}
+
 #settings-container {
   position: absolute;
   right: 50px;
