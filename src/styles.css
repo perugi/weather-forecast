@@ -212,3 +212,8 @@ footer {
 #gh-link:hover #gh-logo {
   transform: rotate(360deg) scale(1.2);
 }
+
+html {
+  visibility: visible;
+  opacity: 1;
+}

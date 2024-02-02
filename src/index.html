@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Forecast</title>
+    <style>
+      html {
+        visibility: hidden;
+        opacity: 0;
+      }
+    </style>
   </head>
   <body>
     <main>
@@ -21,7 +27,7 @@
           <div class="layer"></div>
         </div>
       </div>
-      <div id="weather-container">
+      <div id="weather-container" style="display: none">
         <div id="current-container">
           <div>
             <div id="current-city"></div>
@@ -51,8 +57,10 @@
           <div id="forecast-daily-cards"></div>
         </div>
       </div>
-      <div id="loading-container">Loading weather data...</div>
-      <div id="error-container"></div>
+      <div id="loading-container" style="display: none">
+        Loading weather data...
+      </div>
+      <div id="error-container" style="display: none" ;></div>
     </main>
     <footer>
       <div>

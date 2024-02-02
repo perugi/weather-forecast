@@ -19,11 +19,8 @@
   },
   "homepage": "https://github.com/perugi/web-template#readme",
   "devDependencies": {
-    "@babel/core": "^7.23.7",
-    "@babel/preset-env": "^7.23.8",
     "@perugi/eslint-config": "^1.0.0",
     "@perugi/prettier-config": "^1.0.0",
-    "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
     "eslint": "^8.56.0",
     "eslint-config-airbnb-base": "^15.0.0",
