@@ -66,7 +66,7 @@ export default class Website {
     if (!this.selectedLocation) return;
 
     if (callMethod === 'user') {
-      document.querySelector('#loading-container').style.display = 'block';
+      document.querySelector('#loading-container').style.display = 'flex';
       document.querySelector('#error-container').style.display = 'none';
       document.querySelector('#weather-container').style.display = 'none';
     }
@@ -97,7 +97,7 @@ export default class Website {
 
     loadingContainer.style.display = 'none';
     weatherContainer.style.display = 'none';
-    errorContainer.style.display = 'block';
+    errorContainer.style.display = 'flex';
   }
 
   #renderCurrent() {
@@ -146,18 +146,22 @@ export default class Website {
 
     const feelsLike = currentContainer.querySelector('#feels-like');
     if (this.displayIsMetric) {
-      feelsLike.textContent = `Feels like ${this.weatherData.current.feelslike_c}°C`;
+      feelsLike.innerHTML = `Feels like<br />${this.weatherData.current.feelslike_c}°C`;
     } else {
-      feelsLike.textContent = `Feels like ${this.weatherData.current.feelslike_f}°F`;
+      feelsLike.innerHTML = `Feels like<br />${this.weatherData.current.feelslike_f}°F`;
     }
 
     const precipitation = currentContainer.querySelector(
       '#current-precipitation'
     );
     if (this.displayIsMetric) {
-      precipitation.textContent = `${this.weatherData.current.precip_mm} mm`;
+      precipitation.textContent = `${this.weatherData.current.precip_mm.toFixed(
+        1
+      )} mm`;
     } else {
-      precipitation.textContent = `${this.weatherData.current.precip_in} in`;
+      precipitation.textContent = `${this.weatherData.current.precip_in.toFixed(
+        1
+      )} in`;
     }
 
     const windDirection = currentContainer.querySelector('#wind-direction');
@@ -175,7 +179,7 @@ export default class Website {
     }
 
     loadingContainer.style.display = 'none';
-    weatherContainer.style.display = 'grid';
+    weatherContainer.style.display = 'flex';
     errorContainer.style.display = 'none';
   }
 
@@ -215,9 +219,9 @@ export default class Website {
       const precipitation = document.createElement('div');
       precipitation.classList.add('forecast-24h-precipitation');
       if (this.displayIsMetric) {
-        precipitation.textContent = `${forecast.precip_mm} mm`;
+        precipitation.textContent = `${forecast.precip_mm.toFixed(1)} mm`;
       } else {
-        precipitation.textContent = `${forecast.precip_in} in`;
+        precipitation.textContent = `${forecast.precip_in.toFixed(1)} in`;
       }
 
       forecast24hCard.appendChild(time);
@@ -271,9 +275,9 @@ export default class Website {
       const precipitation = document.createElement('div');
       precipitation.classList.add('forecast-daily-precipitation');
       if (this.displayIsMetric) {
-        precipitation.textContent = `${forecast.totalprecip_mm} mm`;
+        precipitation.textContent = `${forecast.totalprecip_mm.toFixed(1)} mm`;
       } else {
-        precipitation.textContent = `${forecast.totalprecip_in} in`;
+        precipitation.textContent = `${forecast.totalprecip_in.toFixed(1)} in`;
       }
 
       forecastDailyCard.appendChild(title);

@@ -27,40 +27,38 @@
           <div class="layer"></div>
         </div>
       </div>
-      <div id="weather-container" style="display: none">
+      <div id="weather-container">
         <div id="current-container">
+          <div id="current-city"></div>
+          <div id="current-country"></div>
+          <div id="current-date"></div>
+          <div id="last-updated"></div>
           <div>
-            <div id="current-city"></div>
-            <div id="current-country"></div>
-            <div id="current-date"></div>
-            <div id="last-updated"></div>
             <div>
-              <div>
-                <img id="current-weather-icon" alt="Current Weather Icon" />
-                <div id="current-weather-description"></div>
-              </div>
-              <div>
-                <div id="current-temperature"></div>
-                <div id="feels-like"></div>
-                <div id="current-precipitation"></div>
-                <img id="wind-direction" />
-                <div id="wind-speed"></div>
-              </div>
+              <img id="current-weather-icon" alt="Current Weather Icon" />
+              <div id="current-weather-description"></div>
+            </div>
+            <div id="current-conditions">
+              <div id="current-temperature"></div>
+              <div id="feels-like"></div>
+              <div id="current-precipitation"></div>
+              <img id="wind-direction" />
+              <div id="wind-speed"></div>
             </div>
           </div>
         </div>
-        <div id="forecast-24h-container">
-          <div id="forecast-24h-title">Next 24 hours</div>
-          <div id="forecast-24h-cards"></div>
-        </div>
-        <div id="forecast-daily-container">
-          <div id="forecast-daily-cards"></div>
+        <div id="forecast-container">
+          <div id="forecast-24h-container">
+            <div id="forecast-24h-title">Next 24 hours</div>
+            <div id="forecast-24h-cards"></div>
+          </div>
+          <div id="forecast-daily-container">
+            <div id="forecast-daily-cards"></div>
+          </div>
         </div>
       </div>
-      <div id="loading-container" style="display: none">
-        Loading weather data...
-      </div>
-      <div id="error-container" style="display: none" ;></div>
+      <div id="loading-container">Loading weather data...</div>
+      <div id="error-container"></div>
     </main>
     <footer>
       <div>
@@ -69,16 +67,16 @@
           >WeatherAPI.com</a
         >
       </div>
-      <div>
-        Icons by
-        <a target="_blank" href="https://bas.dev/work/meteocons">Meteocons</a>
-      </div>
       <div class="author">
         <a id="gh-link" href="https://github.com/perugi">
           <div>Made by</div>
           <img id="gh-logo" />
           <div>Dominik Perusko</div>
         </a>
+      </div>
+      <div>
+        Icons by
+        <a target="_blank" href="https://bas.dev/work/meteocons">Meteocons</a>
       </div>
     </footer>
   </body>
