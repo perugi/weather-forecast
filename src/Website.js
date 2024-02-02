@@ -41,9 +41,11 @@ export default class Website {
     );
     metricImperialSwitch.addEventListener('click', () => {
       this.displayIsMetric = !this.displayIsMetric;
-      this.#renderCurrent();
-      this.#render24hForecast();
-      this.#renderDailyForecast();
+      if (this.weatherData) {
+        this.#renderCurrent();
+        this.#render24hForecast();
+        this.#renderDailyForecast();
+      }
     });
 
     const windDirection = document.querySelector('#wind-direction');
