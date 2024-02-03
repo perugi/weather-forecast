@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 49.350968 39.185768"
+   version="1.1"
+   id="svg13"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="logo.png"
+   inkscape:export-xdpi="750"
+   inkscape:export-ydpi="750"
+   width="49.350967"
+   height="39.185768"
+   inkscape:version="1.3.2 (091e20ef0f, 2023-11-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview13"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="18.203125"
+     inkscape:cx="26.259227"
+     inkscape:cy="21.177682"
+     inkscape:window-width="2560"
+     inkscape:window-height="1371"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg13" />
+  <defs
+     id="defs9">
+    <linearGradient
+       id="b"
+       x1="16.5"
+       x2="21.5"
+       y1="19.67"
+       y2="28.33"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-5.7220594,-10.825961)">
+      <stop
+         offset="0"
+         stop-color="#fbbf24"
+         id="stop1" />
+      <stop
+         offset=".45"
+         stop-color="#fbbf24"
+         id="stop2" />
+      <stop
+         offset="1"
+         stop-color="#f59e0b"
+         id="stop3" />
+    </linearGradient>
+    <linearGradient
+       id="c"
+       x1="22.559999"
+       x2="39.200001"
+       y1="21.959999"
+       y2="50.799999"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-5.7220594,-10.825961)">
+      <stop
+         offset="0"
+         stop-color="#f3f7fe"
+         id="stop4" />
+      <stop
+         offset=".45"
+         stop-color="#f3f7fe"
+         id="stop5" />
+      <stop
+         offset="1"
+         stop-color="#deeafb"
+         id="stop6" />
+    </linearGradient>
+    <linearGradient
+       id="a"
+       x1="22.530001"
+       x2="25.469999"
+       y1="42.950001"
+       y2="48.049999"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#4286ee"
+         id="stop7" />
+      <stop
+         offset=".45"
+         stop-color="#4286ee"
+         id="stop8" />
+      <stop
+         offset="1"
+         stop-color="#0950bc"
+         id="stop9" />
+    </linearGradient>
+    <linearGradient
+       id="d"
+       x1="29.530001"
+       x2="32.470001"
+       y1="42.950001"
+       y2="48.049999"
+       xlink:href="#a"
+       gradientTransform="translate(-5.7220594,-10.825961)" />
+    <linearGradient
+       id="e"
+       x1="36.529999"
+       x2="39.470001"
+       y1="42.950001"
+       y2="48.049999"
+       xlink:href="#a"
+       gradientTransform="translate(-5.7220594,-10.825961)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#a"
+       id="linearGradient13"
+       gradientUnits="userSpaceOnUse"
+       x1="22.530001"
+       y1="42.950001"
+       x2="25.469999"
+       y2="48.049999"
+       gradientTransform="translate(-5.7220594,-10.825961)" />
+  </defs>
+  <circle
+     cx="13.277941"
+     cy="13.174039"
+     r="5"
+     fill="url(#b)"
+     stroke="#f8af18"
+     stroke-miterlimit="10"
+     stroke-width="0.5"
+     id="circle9"
+     style="fill:url(#b)" />
+  <path
+     fill="none"
+     stroke="#fbbf24"
+     stroke-linecap="round"
+     stroke-miterlimit="10"
+     stroke-width="2"
+     d="m 13.277941,4.8440385 v -3.17 m 0,23.0000005 v -3.17 m 5.89,-14.2200005 2.24,-2.24 M 5.1479406,21.304039 l 2.24,-2.24 m 0,-11.7800005 -2.24,-2.24 m 16.2600004,16.2600005 -2.24,-2.24 m -17.3900004,-5.89 h 3.17 m 19.8300004,0 h -3.17"
+     id="path9">
+    <animateTransform
+       attributeName="transform"
+       dur="45s"
+       repeatCount="indefinite"
+       type="rotate"
+       values="0 19 24; 360 19 24" />
+  </path>
+  <path
+     fill="url(#c)"
+     stroke="#e6effc"
+     stroke-miterlimit="10"
+     stroke-width="0.5"
+     d="m 40.777941,20.674039 h -0.32 a 10.49,10.49 0 0 0 -19.11,-8 7,7 0 0 0 -10.57,6 7.21,7.21 0 0 0 0.1,1.14 7.5,7.5 0 0 0 1.4,14.86 4.19,4.19 0 0 0 0.5,0 v 0 h 28 a 7,7 0 0 0 0,-14 z"
+     id="path10"
+     style="fill:url(#c)" />
+  <path
+     fill="none"
+     stroke="url(#a)"
+     stroke-linecap="round"
+     stroke-miterlimit="10"
+     stroke-width="2"
+     d="m 18.667941,32.204039 -0.78,4.94"
+     id="path11"
+     style="stroke:url(#linearGradient13)">
+    <animateTransform
+       attributeName="transform"
+       dur="0.7s"
+       repeatCount="indefinite"
+       type="translate"
+       values="1 -5; -2 10" />
+    <animate
+       attributeName="opacity"
+       dur="0.7s"
+       repeatCount="indefinite"
+       values="0;1;1;0" />
+  </path>
+  <path
+     fill="none"
+     stroke="url(#d)"
+     stroke-linecap="round"
+     stroke-miterlimit="10"
+     stroke-width="2"
+     d="m 25.667941,32.204039 -0.78,4.94"
+     id="path12"
+     style="stroke:url(#d)">
+    <animateTransform
+       attributeName="transform"
+       begin="-0.4s"
+       dur="0.7s"
+       repeatCount="indefinite"
+       type="translate"
+       values="1 -5; -2 10" />
+    <animate
+       attributeName="opacity"
+       begin="-0.4s"
+       dur="0.7s"
+       repeatCount="indefinite"
+       values="0;1;1;0" />
+  </path>
+  <path
+     fill="none"
+     stroke="url(#e)"
+     stroke-linecap="round"
+     stroke-miterlimit="10"
+     stroke-width="2"
+     d="m 32.667941,32.204039 -0.78,4.94"
+     id="path13"
+     style="stroke:url(#e)">
+    <animateTransform
+       attributeName="transform"
+       begin="-0.2s"
+       dur="0.7s"
+       repeatCount="indefinite"
+       type="translate"
+       values="1 -5; -2 10" />
+    <animate
+       attributeName="opacity"
+       begin="-0.2s"
+       dur="0.7s"
+       repeatCount="indefinite"
+       values="0;1;1;0" />
+  </path>
+</svg>
