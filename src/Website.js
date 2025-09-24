@@ -1,4 +1,6 @@
 import Compass from '@bybas/weather-icons/production/line/all/compass.svg';
+import HeartFilled from './img/heart-filled.svg';
+import HeartOutline from './img/heart-outline.svg';
 import getWeather from './getWeather';
 import lookupIcon from './lookupIcon';
 import getDayOfTheWeek from './getDayOfTheWeek';
@@ -12,6 +14,8 @@ export default class Website {
 
   displayIsMetric;
 
+  favoriteLocation;
+
   // Call the API every minute.
   API_QUERY_WAIT_TIME = 60 * 1000;
 
@@ -20,6 +24,7 @@ export default class Website {
     this.intervalId = null;
     this.weatherData = null;
     this.displayIsMetric = true;
+    this.favoriteLocation = Website.#loadFavorite();
   }
 
   render() {
@@ -50,6 +55,9 @@ export default class Website {
 
     const windDirection = document.querySelector('#wind-direction');
     windDirection.src = Compass;
+
+    // Initialize with favorite location if it exists
+    this.#initializeWithFavorite();
   }
 
   async #processLocationSearch(location) {
@@ -113,6 +121,27 @@ export default class Website {
 
     const country = currentContainer.querySelector('#current-country');
     country.textContent = this.weatherData.location.country;
+
+    // Setup favorite heart icon
+    const heartIcon = currentContainer.querySelector('#favorite-heart');
+    const locationName = this.weatherData.location.name;
+
+    if (this.#isFavorite(locationName)) {
+      heartIcon.src = HeartFilled;
+      heartIcon.classList.add('favorited');
+      heartIcon.title = 'Remove from favorites';
+    } else {
+      heartIcon.src = HeartOutline;
+      heartIcon.classList.remove('favorited');
+      heartIcon.title = 'Add to favorites';
+    }
+
+    // Remove any existing click listeners and add new one
+    const newHeartIcon = heartIcon.cloneNode(true);
+    heartIcon.parentNode.replaceChild(newHeartIcon, heartIcon);
+    newHeartIcon.addEventListener('click', () => {
+      this.#toggleFavorite(locationName);
+    });
 
     const date = currentContainer.querySelector('#current-date');
     date.textContent = `${getDayOfTheWeek(
@@ -289,5 +318,54 @@ export default class Website {
 
       forecastDailyCards.appendChild(forecastDailyCard);
     });
+  }
+
+  static #loadFavorite() {
+    return localStorage.getItem('weather-app-favorite') || null;
+  }
+
+  async #initializeWithFavorite() {
+    if (this.favoriteLocation) {
+      // Automatically load the favorite location
+      this.selectedLocation = this.favoriteLocation;
+      await this.#renderWeather('user');
+    }
+  }
+
+  #saveFavorite() {
+    if (this.favoriteLocation) {
+      localStorage.setItem('weather-app-favorite', this.favoriteLocation);
+    } else {
+      localStorage.removeItem('weather-app-favorite');
+    }
+  }
+
+  #isFavorite(locationName) {
+    return this.favoriteLocation === locationName;
+  }
+
+  #toggleFavorite(locationName) {
+    if (this.favoriteLocation === locationName) {
+      // Remove current favorite
+      this.favoriteLocation = null;
+    } else {
+      // Set new favorite (replaces any existing one)
+      this.favoriteLocation = locationName;
+    }
+    this.#saveFavorite();
+
+    // Update the heart icon immediately
+    const heartIcon = document.querySelector('#favorite-heart');
+    if (heartIcon) {
+      if (this.#isFavorite(locationName)) {
+        heartIcon.src = HeartFilled;
+        heartIcon.classList.add('favorited');
+        heartIcon.title = 'Remove from favorites';
+      } else {
+        heartIcon.src = HeartOutline;
+        heartIcon.classList.remove('favorited');
+        heartIcon.title = 'Add to favorites';
+      }
+    }
   }
 }
