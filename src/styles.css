@@ -163,6 +163,7 @@ main {
   flex-direction: row;
   justify-content: center;
   padding-top: 10vh;
+  padding: 10vh 10px 0 10px;
 }
 
 #current-container {
@@ -265,18 +266,50 @@ main {
 
 #forecast-24h-cards {
   display: flex;
-  gap: 10px;
+  gap: 0.75rem;
   flex-wrap: wrap;
+  overflow-x: visible;
+}
+
+@media (max-width: 670px) {
+  #forecast-24h-cards {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
+  }
+}
+
+#forecast-24h-cards::-webkit-scrollbar {
+  height: 6px;
+}
+
+#forecast-24h-cards::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+#forecast-24h-cards::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
 }
 
 .forecast-24h-card {
   display: flex;
-  width: 80px;
   flex-direction: column;
   align-items: center;
   border: 1px solid var(--text-color-light);
-  padding: 10px;
   border-radius: 6px;
+  width: 80px;
+  padding: 0.75rem;
+}
+
+@media (max-width: 670px) {
+  .forecast-24h-card {
+    flex-shrink: 0;
+    padding: 0.75rem 0.5rem;
+    width: 70px;
+  }
 }
 
 .forecast-24h-time {
@@ -360,6 +393,7 @@ footer {
 
 footer > div {
   width: 250px;
+  text-align: center;
 }
 
 div.author {
@@ -391,4 +425,40 @@ div.author {
 html {
   visibility: visible;
   opacity: 1;
+}
+
+@media (max-width: 670px) {
+  #weather-container {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 5vh;
+  }
+
+  #current-container {
+    margin-right: 0;
+    margin-bottom: 20px;
+    width: 100%;
+    align-items: center;
+  }
+
+  #current-location-header {
+    justify-content: center;
+  }
+
+  #forecast-container {
+    width: 100%;
+  }
+
+  #settings-container {
+    position: static;
+    top: 0;
+    padding-top: 30px;
+    padding-bottom: 10px;
+  }
+
+  footer {
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
 }
