@@ -50,6 +50,8 @@ main {
 #location-input {
   padding: 5px 10px;
   width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 #location-button {
@@ -334,6 +336,7 @@ main {
 #forecast-daily-cards {
   display: flex;
   gap: 10px;
+  justify-content: flex-start;
 }
 
 .forecast-daily-card {
@@ -454,6 +457,16 @@ html {
     top: 0;
     padding-top: 30px;
     padding-bottom: 10px;
+  }
+
+  #forecast-daily-cards {
+    justify-content: center;
+  }
+
+  #location-input {
+    width: calc(100vw - 6rem);
+    max-width: 300px;
+    min-width: 150px;
   }
 
   footer {
