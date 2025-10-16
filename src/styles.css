@@ -302,15 +302,15 @@ main {
   align-items: center;
   border: 1px solid var(--text-color-light);
   border-radius: 6px;
-  width: 80px;
-  padding: 0.75rem;
+  width: 90px;
+  padding: 0.75rem 0.25rem;
 }
 
 @media (max-width: 670px) {
   .forecast-24h-card {
     flex-shrink: 0;
     padding: 0.75rem 0.5rem;
-    width: 70px;
+    width: 80px;
   }
 }
 
@@ -327,6 +327,20 @@ main {
 .forecast-24h-temperature {
   margin-top: auto;
   margin-bottom: 5px;
+}
+
+.forecast-24h-precipitation {
+  text-align: center;
+}
+
+@media (max-width: 670px) {
+  .forecast-24h-temperature {
+    font-size: 12px;
+  }
+
+  .forecast-24h-precipitation {
+    font-size: 12px;
+  }
 }
 
 #forecast-daily-container {
