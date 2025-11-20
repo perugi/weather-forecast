@@ -5,9 +5,10 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    assetModuleFilename: '[name].[contenthash][ext]',
   },
   plugins: [
     new HtmlWebPackPlugin({
